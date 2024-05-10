@@ -22,6 +22,7 @@ import Owner from 'src/types/Owner';
 import { Tooltip } from 'src/components/Tooltip';
 import getOwnerName from 'src/utils/getOwnerName';
 import { t } from '@superset-ui/core';
+import moment from 'moment';
 
 export type ModifiedInfoProps = {
   user?: Owner;
@@ -30,8 +31,12 @@ export type ModifiedInfoProps = {
 
 export const ModifiedInfo = ({ user, date }: ModifiedInfoProps) => {
   const dateSpan = (
-    <span className="no-wrap" data-test="audit-info-date">
-      {date}
+    <span
+      className="no-wrap"
+      data-test="audit-info-date"
+      title={moment.utc(date).local().format('LLL')}
+    >
+      {moment.utc(date).fromNow()}
     </span>
   );
 

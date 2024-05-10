@@ -539,6 +539,11 @@ class AuditMixinNullable(AuditMixin):
     def created_on_delta_humanized(self) -> str:
         return self.created_on_humanized
 
+    @renders("created_on")
+    def created_on_utc(self) -> str:
+        # Convert naive datetime to UTC
+        return self.created_on.astimezone(pytz.utc).strftime("%Y-%m-%dT%H:%M:%S.%f%z")
+
     @renders("changed_on")
     def changed_on_utc(self) -> str:
         # Convert naive datetime to UTC

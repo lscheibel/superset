@@ -83,6 +83,7 @@ class SavedQueryRestApi(BaseSupersetModelRestApi):
 
     show_columns = [
         "changed_on",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "changed_by.first_name",
         "changed_by.id",
@@ -103,6 +104,7 @@ class SavedQueryRestApi(BaseSupersetModelRestApi):
     ]
     list_columns = [
         "changed_on",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "changed_by.first_name",
         "changed_by.id",
@@ -148,6 +150,7 @@ class SavedQueryRestApi(BaseSupersetModelRestApi):
         "created_by.first_name",
         "database.database_name",
         "created_on",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "last_run_delta_humanized",
     ]

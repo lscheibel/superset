@@ -156,6 +156,8 @@ class GetExploreCommand(BaseCommand, ABC):
 
         if slc:
             metadata = {
+                "created_on_utc": slc.created_on_utc(),
+                "changed_on_utc": slc.changed_on_utc(),
                 "created_on_humanized": slc.created_on_humanized,
                 "changed_on_humanized": slc.changed_on_humanized,
                 "owners": [owner.get_full_name() for owner in slc.owners],

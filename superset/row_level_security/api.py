@@ -76,6 +76,7 @@ class RLSRestApi(BaseSupersetModelRestApi):
         "roles.id",
         "roles.name",
         "clause",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "changed_by.first_name",
         "changed_by.last_name",

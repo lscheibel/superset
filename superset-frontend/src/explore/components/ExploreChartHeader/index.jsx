@@ -198,7 +198,7 @@ export const ExploreChartHeader = ({
     });
     items.push({
       type: MetadataType.LastModified,
-      value: metadata.changed_on_humanized,
+      value: metadata.changed_on_utc,
       modifiedBy: metadata.changed_by || t('Not available'),
     });
     items.push({

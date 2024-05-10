@@ -411,14 +411,11 @@ function DatabaseList({
       {
         Cell: ({
           row: {
-            original: {
-              changed_by: changedBy,
-              changed_on_delta_humanized: changedOn,
-            },
+            original: { changed_by: changedBy, changed_on_utc: changedOn },
           },
         }: any) => <ModifiedInfo date={changedOn} user={changedBy} />,
         Header: t('Last modified'),
-        accessor: 'changed_on_delta_humanized',
+        accessor: 'changed_on_utc',
         size: 'xl',
       },
       {

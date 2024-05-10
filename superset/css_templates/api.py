@@ -54,6 +54,7 @@ class CssTemplateRestApi(BaseSupersetModelRestApi):
     allow_browser_login = True
 
     show_columns = [
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "changed_by.first_name",
         "changed_by.id",
@@ -66,6 +67,7 @@ class CssTemplateRestApi(BaseSupersetModelRestApi):
         "template_name",
     ]
     list_columns = [
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "changed_by.first_name",
         "changed_by.id",

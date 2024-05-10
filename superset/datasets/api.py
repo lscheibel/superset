@@ -130,6 +130,7 @@ class DatasetRestApi(BaseSupersetModelRestApi):
         "catalog",
         "schema",
         "changed_by.first_name",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "database.database_name",
     ]

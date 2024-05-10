@@ -202,6 +202,7 @@ class ChartRestApi(BaseSupersetModelRestApi):
     list_select_columns = list_columns + ["changed_by_fk", "changed_on"]
     order_columns = [
         "changed_by.first_name",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "datasource_id",
         "datasource_name",

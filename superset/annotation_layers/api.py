@@ -80,6 +80,7 @@ class AnnotationLayerRestApi(BaseSupersetModelRestApi):
         "changed_by.first_name",
         "changed_by.last_name",
         "changed_on",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "created_on",
     ]
@@ -94,6 +95,7 @@ class AnnotationLayerRestApi(BaseSupersetModelRestApi):
         "created_by.first_name",
         "changed_by.first_name",
         "changed_on",
+        "changed_on_utc",
         "changed_on_delta_humanized",
         "created_on",
     ]

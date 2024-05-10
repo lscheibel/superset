@@ -177,14 +177,11 @@ function TagList(props: TagListProps) {
       {
         Cell: ({
           row: {
-            original: {
-              changed_on_delta_humanized: changedOn,
-              changed_by: changedBy,
-            },
+            original: { changed_on_utc: changedOn, changed_by: changedBy },
           },
         }: any) => <ModifiedInfo date={changedOn} user={changedBy} />,
         Header: t('Last modified'),
-        accessor: 'changed_on_delta_humanized',
+        accessor: 'changed_on_utc',
         size: 'xl',
       },
       {

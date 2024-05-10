@@ -19,6 +19,7 @@
 import React from 'react';
 import { ensureIsArray, styled, t } from '@superset-ui/core';
 import Icons from 'src/components/Icons';
+import moment from 'moment';
 import { ContentType, MetadataType } from '.';
 
 const Header = styled.div`
@@ -74,10 +75,13 @@ const config = (contentType: ContentType) => {
     case MetadataType.LastModified:
       return {
         icon: Icons.EditOutlined,
-        title: contentType.value,
+        title: moment.utc(contentType.value).fromNow(),
         tooltip: (
           <div>
-            <Info header={t('Last modified')} text={contentType.value} />
+            <Info
+              header={t('Last modified')}
+              text={moment.utc(contentType.value).local().format('LLL')}
+            />
             <Info header={t('Modified by')} text={contentType.modifiedBy} />
           </div>
         ),
