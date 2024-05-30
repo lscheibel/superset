@@ -21,7 +21,7 @@ import React from 'react';
 import Owner from 'src/types/Owner';
 import { Tooltip } from 'src/components/Tooltip';
 import getOwnerName from 'src/utils/getOwnerName';
-import { t } from '@superset-ui/core';
+import { relativeTimeFromNow, t } from '@superset-ui/core';
 import moment from 'moment';
 
 export type ModifiedInfoProps = {
@@ -36,7 +36,7 @@ export const ModifiedInfo = ({ user, date }: ModifiedInfoProps) => {
       data-test="audit-info-date"
       title={moment.utc(date).local().format('LLL')}
     >
-      {moment.utc(date).fromNow()}
+      {relativeTimeFromNow(date)}
     </span>
   );
 

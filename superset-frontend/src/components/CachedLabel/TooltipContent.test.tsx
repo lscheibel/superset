@@ -19,7 +19,7 @@
 
 import React from 'react';
 import { render, screen } from 'spec/helpers/testing-library';
-import moment from 'moment';
+import { relativeTimeFromNow } from '@superset-ui/core';
 import { TooltipContent } from './TooltipContent';
 
 test('Rendering TooltipContent correctly - no timestep', () => {
@@ -32,8 +32,8 @@ test('Rendering TooltipContent correctly - no timestep', () => {
 test('Rendering TooltipContent correctly - with timestep', () => {
   render(<TooltipContent cachedTimestamp="01-01-2000" />);
   expect(screen.getByTestId('tooltip-content')?.textContent).toBe(
-    `Loaded data cached ${moment
-      .utc('01-01-2000')
-      .fromNow()}. Click to force-refresh`,
+    `Loaded data cached ${relativeTimeFromNow(
+      '01-01-2000',
+    )}. Click to force-refresh`,
   );
 });

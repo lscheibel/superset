@@ -18,7 +18,13 @@
  */
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { isFeatureEnabled, FeatureFlag, t, useTheme } from '@superset-ui/core';
+import {
+  FeatureFlag,
+  isFeatureEnabled,
+  relativeTimeFromNow,
+  t,
+  useTheme,
+} from '@superset-ui/core';
 import { CardStyles } from 'src/views/CRUD/utils';
 import { AntdDropdown } from 'src/components';
 import { Menu } from 'src/components/Menu';
@@ -28,7 +34,6 @@ import Label from 'src/components/Label';
 import FacePile from 'src/components/FacePile';
 import FaveStar from 'src/components/FaveStar';
 import { Dashboard } from 'src/views/CRUD/types';
-import moment from 'moment';
 
 interface DashboardCardProps {
   isChart?: boolean;
@@ -131,10 +136,11 @@ function DashboardCard({
         linkComponent={Link}
         imgURL={dashboard.thumbnail_url}
         imgFallbackURL="/static/assets/images/dashboard-card-fallback.svg"
-        description={t(
-          'Modified %s',
-          moment.utc(dashboard.changed_on_utc).fromNow(),
-        )}
+        description={
+          dashboard.changed_on_utc
+            ? t('Modified %s', relativeTimeFromNow(dashboard.changed_on_utc))
+            : ''
+        }
         coverLeft={<FacePile users={dashboard.owners || []} />}
         actions={
           <ListViewCard.Actions

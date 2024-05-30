@@ -22,6 +22,7 @@ import { Link } from 'react-router-dom';
 import {
   css,
   ensureIsArray,
+  relativeTimeFromNow,
   styled,
   SupersetTheme,
   t,
@@ -29,8 +30,8 @@ import {
 import Chart, { ChartLinkedDashboard } from 'src/types/Chart';
 import Table, {
   ColumnsType,
-  TableSize,
   OnChangeFunction,
+  TableSize,
 } from 'src/components/Table';
 import { EmptyStateBig } from 'src/components/EmptyState';
 import ChartImage from 'src/assets/images/chart.svg';
@@ -38,7 +39,6 @@ import Icons from 'src/components/Icons';
 import { useToasts } from 'src/components/MessageToasts/withToasts';
 import { useListViewResource } from 'src/views/CRUD/hooks';
 import { FilterOperator } from 'src/components/ListView';
-import moment from 'moment';
 import TruncatedList from 'src/components/TruncatedList';
 
 interface DatasetUsageProps {
@@ -92,7 +92,7 @@ const columns: ColumnsType<Chart> = [
     sorter: true,
     defaultSortOrder: 'descend',
     render: (value, record) =>
-      record.last_saved_at ? moment.utc(record.last_saved_at).fromNow() : null,
+      record.last_saved_at ? relativeTimeFromNow(record.last_saved_at) : null,
   },
   {
     key: 'last_saved_by.first_name',

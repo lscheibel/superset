@@ -17,37 +17,37 @@
  * under the License.
  */
 import React, {
-  MouseEvent,
   Key,
+  MouseEvent,
   ReactChild,
-  useState,
-  useRef,
   RefObject,
   useCallback,
+  useRef,
+  useState,
 } from 'react';
 import { RouteComponentProps, useHistory, withRouter } from 'react-router-dom';
-import moment from 'moment';
 import {
   Behavior,
   css,
-  isFeatureEnabled,
+  ensureIsArray,
   FeatureFlag,
   getChartMetadataRegistry,
+  isFeatureEnabled,
   QueryFormData,
+  relativeTimeFromNow,
   styled,
   t,
   useTheme,
-  ensureIsArray,
 } from '@superset-ui/core';
 import { useSelector } from 'react-redux';
 import {
-  MenuItemKeyEnum,
-  Menu,
-  MenuItemChildType,
   isAntdMenuItem,
   isAntdMenuItemRef,
-  isSubMenuOrItemType,
   isAntdMenuSubmenu,
+  isSubMenuOrItemType,
+  Menu,
+  MenuItemChildType,
+  MenuItemKeyEnum,
 } from 'src/components/Menu';
 import { NoAnimationDropdown } from 'src/components/Dropdown';
 import ShareMenuItems from 'src/dashboard/components/menu/ShareMenuItems';
@@ -680,9 +680,9 @@ const SliceHeaderControls = (props: SliceHeaderControlsPropsWithRouter) => {
   } = props;
   const isTable = slice.viz_type === 'table';
   const cachedWhen = (cachedDttm || []).map(itemCachedDttm =>
-    moment.utc(itemCachedDttm).fromNow(),
+    relativeTimeFromNow(itemCachedDttm),
   );
-  const updatedWhen = updatedDttm ? moment.utc(updatedDttm).fromNow() : '';
+  const updatedWhen = updatedDttm ? relativeTimeFromNow(updatedDttm) : '';
   const getCachedTitle = (itemCached: boolean) => {
     if (itemCached) {
       return t('Cached %s', cachedWhen);

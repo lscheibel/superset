@@ -17,7 +17,12 @@
  * under the License.
  */
 import React from 'react';
-import { ensureIsArray, styled, t } from '@superset-ui/core';
+import {
+  ensureIsArray,
+  relativeTimeFromNow,
+  styled,
+  t,
+} from '@superset-ui/core';
 import Icons from 'src/components/Icons';
 import moment from 'moment';
 import { ContentType, MetadataType } from '.';
@@ -75,7 +80,7 @@ const config = (contentType: ContentType) => {
     case MetadataType.LastModified:
       return {
         icon: Icons.EditOutlined,
-        title: moment.utc(contentType.value).fromNow(),
+        title: relativeTimeFromNow(contentType.value),
         tooltip: (
           <div>
             <Info

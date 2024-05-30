@@ -17,8 +17,7 @@
  * under the License.
  */
 import React from 'react';
-import moment from 'moment';
-import { t, styled } from '@superset-ui/core';
+import { relativeTimeFromNow, styled, t } from '@superset-ui/core';
 import TableView, { EmptyWrapperType } from 'src/components/TableView';
 import { TagsList } from 'src/components/Tags';
 import FacePile from 'src/components/FacePile';
@@ -54,7 +53,7 @@ interface TaggedObject {
   type: string;
   name: string;
   url: string;
-  changed_on: moment.MomentInput;
+  changed_on: string;
   created_by: number | undefined;
   creator: string;
   owners: Owner[];
@@ -88,7 +87,7 @@ export default function AllEntitiesTable({
   const renderTable = (type: objectType) => {
     const data = objects[type].map((o: TaggedObject) => ({
       [type]: <a href={o.url}>{o.name}</a>,
-      modified: moment.utc(o.changed_on).fromNow(),
+      modified: relativeTimeFromNow(o.changed_on),
       tags: o.tags,
       owners: o.owners,
     }));

@@ -17,6 +17,8 @@
  * under the License.
  */
 import UntypedJed from 'jed';
+import { formatDistanceToNow, Locale as DateFnsLocal } from 'date-fns';
+import * as locales from 'date-fns/locale';
 import logging from '../utils/logging';
 import {
   Jed,
@@ -45,10 +47,15 @@ export default class Translator {
 
   locale: Locale;
 
+  dateFnsLocale: DateFnsLocal;
+
   constructor(config: TranslatorConfig = {}) {
     const { languagePack = DEFAULT_LANGUAGE_PACK } = config;
     this.i18n = new UntypedJed(languagePack) as Jed;
     this.locale = this.i18n.options.locale_data.superset[''].lang as Locale;
+
+    this.dateFnsLocale =
+      locales[this.locale.replaceAll('_', '')] || locales.enUS;
   }
 
   /**
@@ -101,5 +108,12 @@ export default class Translator {
       .translate(key)
       .ifPlural(num as number, plural as string)
       .fetch(...rest);
+  }
+
+  formatRelativeTimeFromNow(date: string | number): string {
+    return formatDistanceToNow(date, {
+      addSuffix: true,
+      locale: this.dateFnsLocale,
+    });
   }
 }

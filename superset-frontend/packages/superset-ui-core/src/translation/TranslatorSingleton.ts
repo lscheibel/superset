@@ -71,6 +71,10 @@ function tn(key: string, ...args: unknown[]) {
   return getInstance().translateWithNumber(key, ...args);
 }
 
+function relativeTimeFromNow(date: string | number) {
+  return getInstance().formatRelativeTimeFromNow(date);
+}
+
 export {
   configure,
   addTranslation,
@@ -79,4 +83,5 @@ export {
   t,
   tn,
   resetTranslation,
+  relativeTimeFromNow,
 };
